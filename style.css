@@ -106,3 +106,7 @@ section h3 { font-size: 18px; margin: 20px 0 6px; }
 .brands li { background: var(--bg-soft); border-radius: 8px; padding: 6px 12px; font-weight: 600; }
 .videos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
 .videos iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 12px; }
+.team { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 16px 0; }
+.team figure { margin: 0; }
+.team img { width: 100%; height: auto; border-radius: 12px; display: block; }
+.team figcaption { font-size: 14px; color: #5a6578; margin-top: 6px; }
