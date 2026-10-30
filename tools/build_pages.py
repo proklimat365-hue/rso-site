@@ -24,6 +24,7 @@ CITIES = {
 PAGES = [
     {
         "slug": "obsluzhivanie-kondicionerov",
+        "videos": [("5D4iwPBhh-w", "Обслуживание кондиционера")],
         "title": "Обслуживание кондиционеров {in}",
         "desc": "Техническое обслуживание и чистка кондиционеров {in}: от 125 BYN. Выезд на следующий день, гарантия. Климат 365, тел. +375 29 687-87-17.",
         "lead": "Плановое обслуживание продлевает жизнь кондиционера, возвращает ему мощность охлаждения и убирает неприятный запах. Приезжаем, как правило, на следующий день после звонка.",
@@ -93,6 +94,7 @@ PAGES = [
     },
     {
         "slug": "montazh-kondicionerov",
+        "videos": [("bYHBgKCmuSY", "Монтаж кондиционера"), ("KMqF0kp1l1Y", "Монтаж кондиционера, ещё один объект")],
         "title": "Установка и монтаж кондиционеров {in}",
         "desc": "Установка кондиционеров {in}: монтаж от 450 BYN, гарантия на монтаж 3 года. Бытовые и полупромышленные сплит-системы. Тел. +375 29 687-87-17.",
         "lead": "Устанавливаем бытовые и полупромышленные кондиционеры в квартирах, домах, офисах и магазинах. Даём гарантию на монтаж 3 года.",
@@ -164,6 +166,15 @@ def page_html(city_key, city, p):
 {bl}
     </ul>
   </section>"""
+    videos = ""
+    if p.get("videos"):
+        vl = "\n".join(f'      <iframe src="https://www.youtube-nocookie.com/embed/{v}" title="{escape(vt)}: видео Климат 365" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>' for v, vt in p["videos"])
+        videos = f"""  <section class="wrap">
+    <h2>Как мы работаем: видео</h2>
+    <div class="videos">
+{vl}
+    </div>
+  </section>"""
     faq = "\n".join(f"""    <h3>{escape(q)}</h3>
     <p>{escape(a)}</p>""" for q, a in p["faq"])
     others = "\n".join(
@@ -209,6 +220,8 @@ def page_html(city_key, city, p):
   </section>
 
 {sections}
+
+{videos}
 
 {brands}
 
