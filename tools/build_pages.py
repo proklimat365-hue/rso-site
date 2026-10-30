@@ -14,6 +14,8 @@ PHONE_TXT = "+375 29 687-87-17"
 VIBER = "viber://chat?number=%2B375447688127"
 TG = "https://t.me/+375447688127"
 
+BRANDS = ['Daikin', 'Mitsubishi Heavy', 'Toshiba', 'Panasonic', 'Hitachi', 'LG', 'Haier', 'Gree', 'Midea', 'Hisense', 'Electrolux', 'Ballu', 'Royal Clima', 'NeoClima', 'Energolux', 'Funai', 'MDV', 'Daichi', 'Dahatsu', 'Chigo', 'Green', 'Oasis']
+
 CITIES = {
     "mogilev": {"name": "Могилёв", "in": "в Могилёве", "region": "Могилёвская область",
                 "near": "Могилёв и район, а также Бобруйск, Осиповичи, Горки, Кричев по договорённости"},
@@ -110,6 +112,7 @@ PAGES = [
     },
     {
         "slug": "holod-dlya-cvetochnyh-magazinov",
+        "brands": False,
         "title": "Холодильное оборудование для цветочных магазинов {in}",
         "desc": "Кондиционеры, холодильные камеры и витрины для цветочных магазинов {in}: подбор, монтаж, ремонт и обслуживание. Аварийный выезд в день обращения. Тел. +375 29 687-87-17.",
         "lead": "Цветы теряют товарный вид за несколько часов без холода. Мы обслуживаем цветочные салоны: подбираем и ставим кондиционеры, ремонтируем холодильные камеры и витрины для цветов. При поломке выезжаем в день обращения.",
@@ -151,6 +154,15 @@ def page_html(city_key, city, p):
     <table class="prices">
 {rows}
     </table>
+  </section>"""
+    brands = ""
+    if p.get("brands", True):
+        bl = "\n".join(f"      <li>{escape(b)}</li>" for b in BRANDS)
+        brands = f"""  <section class="wrap">
+    <h2>Работаем со всеми марками</h2>
+    <ul class="brands">
+{bl}
+    </ul>
   </section>"""
     faq = "\n".join(f"""    <h3>{escape(q)}</h3>
     <p>{escape(a)}</p>""" for q, a in p["faq"])
@@ -197,6 +209,8 @@ def page_html(city_key, city, p):
   </section>
 
 {sections}
+
+{brands}
 
 {prices}
 
