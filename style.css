@@ -101,3 +101,6 @@ h2 { font-size: 28px; margin: 0 0 20px; }
 section h3 { font-size: 18px; margin: 20px 0 6px; }
 .links { padding-left: 18px; columns: 2 320px; }
 .links li { margin-bottom: 8px; }
+
+.brands { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.brands li { background: var(--bg-soft); border-radius: 8px; padding: 6px 12px; font-weight: 600; }
