@@ -250,12 +250,14 @@ def page_html(city_key, city, p):
       <p>Позвоните или напишите, расскажите, что случилось, и мы подскажем стоимость и время выезда.</p>
       <p class="big"><a href="tel:{PHONE}">{PHONE_TXT}</a> <span>(A1)</span></p>
       <p>Viber и Telegram: <a href="{VIBER}">+375 44 768-81-27</a></p>
+      <p>Офис: г. Могилёв, ул. Калужская, 15/1, офис 3<br>Работаем ежедневно с 9:00 до 20:00<br>Почта: <a href="mailto:klimat365.pro@yandex.ru">klimat365.pro@yandex.ru</a></p>
     </div>
   </section>
 </main>
 
 <footer class="wrap foot">
   <p>ООО «Климат 365» · Обслуживание кондиционеров и холодильного оборудования в Беларуси</p>
+  <p>УНП 791308488 · г. Могилёв, ул. Калужская, 15/1, офис 3 · ежедневно 9:00–20:00</p>
 </footer>
 
 <nav class="callbar" aria-label="Связаться">
