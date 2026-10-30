@@ -94,3 +94,10 @@ h2 { font-size: 28px; margin: 0 0 20px; }
 .review { margin: 0; padding: 20px; border: 1px solid #e6ebf3; border-radius: 16px; background: #fff; }
 .review p { margin: 0 0 12px; }
 .review footer { color: var(--gray); font-size: 14px; }
+
+/* Страницы услуг */
+.crumbs { font-size: 14px; color: var(--gray); margin: 0 0 12px; }
+.crumbs a { color: var(--gray); }
+section h3 { font-size: 18px; margin: 20px 0 6px; }
+.links { padding-left: 18px; columns: 2 320px; }
+.links li { margin-bottom: 8px; }
