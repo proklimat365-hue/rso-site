@@ -87,3 +87,10 @@ h2 { font-size: 28px; margin: 0 0 20px; }
 .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .gallery img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 12px; display: block; }
 @media (max-width: 700px) { .gallery { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
+
+/* Отзывы */
+.rating { font-size: 18px; margin: 0 0 16px; }
+.reviews { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 16px; }
+.review { margin: 0; padding: 20px; border: 1px solid #e6ebf3; border-radius: 16px; background: #fff; }
+.review p { margin: 0 0 12px; }
+.review footer { color: var(--gray); font-size: 14px; }
