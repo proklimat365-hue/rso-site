@@ -112,12 +112,12 @@ section h3 { font-size: 18px; margin: 20px 0 6px; }
 .team figcaption { font-size: 14px; color: #5a6578; margin-top: 6px; }
 
 /* ===== Дизайн v2 ===== */
-:root { --navy: #0b1a33; --navy-2: #13294d; --shadow: 0 6px 24px rgba(13, 30, 60, .08); }
+:root { --navy: #1c3f7a; --navy-2: #2a5cb3; --shadow: 0 6px 24px rgba(13, 30, 60, .08); }
 body { font-family: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: #f6f8fc; }
 .top { box-shadow: 0 1px 0 #e6ebf3; border: 0; }
 .phone { font-size: 19px; }
 
-.hero { background: radial-gradient(circle at 85% 20%, #2a5bd7 0, transparent 45%), linear-gradient(135deg, var(--navy), var(--navy-2)); color: #fff; padding: 56px 0 64px; }
+.hero { background: radial-gradient(circle at 85% 20%, #5b93f5 0, transparent 50%), linear-gradient(135deg, var(--navy), var(--navy-2)); color: #fff; padding: 56px 0 64px; }
 .hero h1 { color: #fff; letter-spacing: -.02em; }
 .hero .lead { color: #c7d3ea; }
 .hero .crumbs, .hero .crumbs a { color: #9fb2d6; }
@@ -159,3 +159,4 @@ h2::before { content: ""; position: absolute; top: 0; left: 0; width: 44px; heig
 .gallery img, .team img { box-shadow: var(--shadow); }
 .contacts { background: linear-gradient(135deg, var(--navy), var(--navy-2)); }
 @media (max-width: 700px) { .hero { padding: 32px 0 56px; } .hero .lead { font-size: 16px; } .eyebrow { font-size: 13px; } }
+.hero .btn-main { background: #fff; color: #1f5ad6; }
