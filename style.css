@@ -166,3 +166,12 @@ h2::before { content: ""; position: absolute; top: 0; left: 0; width: 44px; heig
 .btn-main::after, .cb-call::after { content: ""; position: absolute; top: 0; left: -75%; width: 50%; height: 100%; background: linear-gradient(120deg, transparent, rgba(255,255,255,.55), transparent); transform: skewX(-20deg); animation: shine 3.5s ease-in-out infinite; }
 @keyframes shine { 0%, 60% { left: -75%; } 100% { left: 130%; } }
 @media (prefers-reduced-motion: reduce) { .btn-main::after, .cb-call::after { animation: none; display: none; } }
+
+/* Меню в шапке */
+.menu { display: flex; gap: 28px; }
+.menu a { color: var(--dark); text-decoration: none; font-weight: 600; font-size: 15px; }
+.menu a:hover { color: #2f6ae6; }
+.top-contact { display: flex; flex-direction: column; align-items: flex-end; line-height: 1.25; }
+.top-contact span { font-size: 13px; color: var(--gray); }
+@media (max-width: 900px) { .menu { display: none; } }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
