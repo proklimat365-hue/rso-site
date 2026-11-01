@@ -5,6 +5,7 @@
 """
 from pathlib import Path
 from html import escape
+import json
 
 ROOT = Path(__file__).resolve().parent.parent
 BASE = "https://xn--b1afk4ade.xn--365-5cd3blhj9c.xn--90ais/"
@@ -213,6 +214,23 @@ def page_html(city_key, city, p):
     others = "\n".join(
         f'      <li><a href="{o["slug"]}.html">{escape(t(o["title"]))}</a></li>'
         for o in PAGES if o["slug"] != p["slug"])
+    url = f"{BASE}{city_key}/{p['slug']}.html"
+    ld = [
+        {"@context": "https://schema.org", "@type": "FAQPage",
+         "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]},
+        {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Главная", "item": BASE},
+            {"@type": "ListItem", "position": 2, "name": title, "item": url}]},
+        {"@context": "https://schema.org", "@type": "Service", "name": title, "areaServed": city["name"],
+         "provider": {"@type": "HVACBusiness", "name": "Климат 365", "telephone": PHONE, "url": BASE}},
+    ]
+    ld_html = "\n".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in ld)
+    og = f"""<meta property="og:type" content="website">
+<meta property="og:title" content="{escape(title)} | Климат 365">
+<meta property="og:description" content="{escape(t(p["desc"]))}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{BASE}img/team/team-2.jpg">
+<meta property="og:locale" content="ru_BY">"""
     return f"""<!doctype html>
 <html lang="ru">
 <head>
@@ -220,7 +238,9 @@ def page_html(city_key, city, p):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{escape(title)} | Климат 365</title>
 <meta name="description" content="{escape(t(p["desc"]))}">
-<link rel="canonical" href="{BASE}{city_key}/{p["slug"]}.html">
+<link rel="canonical" href="{url}">
+{og}
+{ld_html}
 <link rel="icon" href="../img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap">
 <link rel="stylesheet" href="../style.css?v=5">
