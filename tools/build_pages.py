@@ -7,7 +7,7 @@ from pathlib import Path
 from html import escape
 
 ROOT = Path(__file__).resolve().parent.parent
-BASE = "https://proklimat365-hue.github.io/rso-site/"  # поменять при подключении домена
+BASE = "https://xn--b1afk4ade.xn--365-5cd3blhj9c.xn--90ais/"
 
 PHONE = "+375296878717"
 PHONE_TXT = "+375 29 687-87-17"
