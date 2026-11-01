@@ -55,7 +55,7 @@ CITIES = {
 }
 
 # Города, куда ездим групповыми выездами (5–7 клиентов за поездку).
-GROUP_PAGES = ["obsluzhivanie-kondicionerov", "remont-kondicionerov", "zapravka-kondicionerov", "holod-dlya-cvetochnyh-magazinov"]
+GROUP_PAGES = ["obsluzhivanie-kondicionerov", "remont-kondicionerov", "zapravka-kondicionerov", "montazh-kondicionerov", "holod-dlya-cvetochnyh-magazinov"]
 
 
 def group_city(name, in_, region, near, clients, intro):
