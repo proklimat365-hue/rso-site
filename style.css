@@ -175,3 +175,9 @@ h2::before { content: ""; position: absolute; top: 0; left: 0; width: 44px; heig
 .top-contact span { font-size: 13px; color: var(--gray); }
 @media (max-width: 900px) { .menu { display: none; } }
 html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+
+/* Рейтинг Яндекс Карт */
+.ya-badge { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; background: #fff; border-radius: 16px; box-shadow: var(--shadow); padding: 16px 24px 16px 16px; margin: 0 0 20px; text-decoration: none; color: var(--dark); max-width: 720px; }
+.ya-badge img { width: 260px; height: auto; display: block; }
+.ya-badge span { font-size: 17px; line-height: 1.6; }
+.ya-badge u { color: #2f6ae6; text-decoration: none; font-weight: 600; }
