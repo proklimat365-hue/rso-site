@@ -223,14 +223,15 @@ def page_html(city_key, city, p):
 <link rel="canonical" href="{BASE}{city_key}/{p["slug"]}.html">
 <link rel="icon" href="../img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="../style.css?v=3">
+<link rel="stylesheet" href="../style.css?v=4">
 </head>
 <body>
 
 <header class="top">
   <div class="wrap top-in">
     <a href="../" class="logo"><img src="../img/logo.png" alt="Климат 365" width="160" height="73"></a>
-    <a class="phone" href="tel:{PHONE}">{PHONE_TXT}</a>
+    <nav class="menu" aria-label="Меню"><a href="../#uslugi">Услуги</a><a href="../#prices">Цены</a><a href="../#reviews">Отзывы</a><a href="../#minsk">Минск</a><a href="../#contacts">Контакты</a></nav>
+    <div class="top-contact"><a class="phone" href="tel:{PHONE}">{PHONE_TXT}</a><span>ежедневно 9:00–20:00</span></div>
   </div>
 </header>
 
@@ -292,7 +293,7 @@ def page_html(city_key, city, p):
     </ul>
   </section>
 
-  <section class="contacts">
+  <section class="contacts" id="contacts">
     <div class="wrap">
       <h2>Оставьте заявку</h2>
       <p>Позвоните или напишите, расскажите, что случилось, и мы подскажем стоимость и время выезда.</p>
