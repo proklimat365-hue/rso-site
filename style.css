@@ -159,4 +159,5 @@ h2::before { content: ""; position: absolute; top: 0; left: 0; width: 44px; heig
 .gallery img, .team img { box-shadow: var(--shadow); }
 .contacts { background: linear-gradient(135deg, var(--navy), var(--navy-2)); }
 @media (max-width: 700px) { .hero { padding: 32px 0 56px; } .hero .lead { font-size: 16px; } .eyebrow { font-size: 13px; } }
-.hero .btn-main { background: #fff; color: #1f5ad6; }
+.btn-main, .hero .btn-main { background: linear-gradient(135deg, #2fcf6f, #16a34a); color: #fff; }
+.cb-call { background: #16a34a !important; }
