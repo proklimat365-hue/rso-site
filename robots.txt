@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://proklimat365-hue.github.io/rso-site/sitemap.xml
+Sitemap: https://xn--b1afk4ade.xn--365-5cd3blhj9c.xn--90ais/sitemap.xml
