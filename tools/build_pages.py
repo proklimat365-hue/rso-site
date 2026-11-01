@@ -16,6 +16,9 @@ TG = "https://t.me/+375447688127"
 
 BRANDS = ['Daikin', 'Mitsubishi Heavy', 'Toshiba', 'Panasonic', 'Hitachi', 'LG', 'Haier', 'Gree', 'Midea', 'Hisense', 'Electrolux', 'Ballu', 'Royal Clima', 'NeoClima', 'Energolux', 'Funai', 'MDV', 'Daichi', 'Dahatsu', 'Chigo', 'Green', 'Oasis']
 
+SERVICE_INTRO = 'Многие компании летом заняты только монтажом и продажей кондиционеров, и до ремонта у них просто не доходят руки. У нас есть отдельный отдел сервиса, поэтому ремонтом и обслуживанием мы занимаемся круглый год, в том числе в разгар сезона.'
+SERVICE_ITEMS = ['<b>Руководитель сервиса</b> отвечает за качество и сроки.', '<b>Менеджер заботы</b> принимает заявки, напоминает о плановом обслуживании и остаётся на связи после работы.', '<b>Инженер по обслуживанию</b> занимается только ремонтом и сервисом, его не забирают на монтажи.']
+
 CITIES = {
     "mogilev": {"name": "Могилёв", "in": "в Могилёве", "region": "Могилёвская область",
                 "near": "Могилёв и район, а также Бобруйск, Осиповичи, Горки, Кричев по договорённости",
@@ -238,6 +241,7 @@ def page_html(city_key, city, p):
       <p class="lead">{escape(p["lead"])}</p>
       <ul class="badges">
         <li><b>Работаем с 2018 года</b></li>
+        <li><b>Сервис круглый год</b></li>
         <li><b>5,0 ★</b> на Яндекс Картах</li>
         <li>{city["badge"]}</li>
       </ul>
@@ -250,6 +254,14 @@ def page_html(city_key, city, p):
   </section>
 
 {sections}
+
+  <section class="wrap">
+    <h2>Свой отдел сервиса</h2>
+    <p>{escape(SERVICE_INTRO)}</p>
+    <ul class="why">
+{chr(10).join(f"      <li>{i}</li>" for i in SERVICE_ITEMS)}
+    </ul>
+  </section>
 
 {videos}
 
