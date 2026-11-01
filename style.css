@@ -110,3 +110,53 @@ section h3 { font-size: 18px; margin: 20px 0 6px; }
 .team figure { margin: 0; }
 .team img { width: 100%; height: auto; border-radius: 12px; display: block; }
 .team figcaption { font-size: 14px; color: #5a6578; margin-top: 6px; }
+
+/* ===== Дизайн v2 ===== */
+:root { --navy: #1c3f7a; --navy-2: #2a5cb3; --shadow: 0 6px 24px rgba(13, 30, 60, .08); }
+body { font-family: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: #f6f8fc; }
+.top { box-shadow: 0 1px 0 #e6ebf3; border: 0; }
+.phone { font-size: 19px; }
+
+.hero { background: radial-gradient(circle at 85% 20%, #5b93f5 0, transparent 50%), linear-gradient(135deg, var(--navy), var(--navy-2)); color: #fff; padding: 56px 0 64px; }
+.hero h1 { color: #fff; letter-spacing: -.02em; }
+.hero .lead { color: #c7d3ea; }
+.hero .crumbs, .hero .crumbs a { color: #9fb2d6; }
+.eyebrow { display: inline-block; margin: 0 0 14px; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.1); color: #cfe0ff; font-size: 14px; font-weight: 600; }
+.hero .badges li { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); color: #e6eeff; }
+.hero-in { display: grid; grid-template-columns: 1.25fr 1fr; gap: 40px; align-items: center; }
+.hero-photo { margin: 0; position: relative; }
+.hero-photo img { width: 100%; height: auto; display: block; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+.hero-photo figcaption { position: absolute; left: 16px; bottom: 16px; background: #fff; color: var(--dark); padding: 10px 14px; border-radius: 12px; font-size: 14px; box-shadow: var(--shadow); }
+@media (max-width: 860px) { .hero-in { grid-template-columns: 1fr; gap: 28px; } }
+
+.btn { padding: 15px 26px; box-shadow: 0 6px 16px rgba(0,0,0,.18); transition: transform .15s; }
+.btn:hover { transform: translateY(-2px); }
+.btn-main { background: linear-gradient(135deg, #4f8df7, #2f6ae6); }
+
+.stats { list-style: none; margin: -36px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; position: relative; }
+.stats li { background: #fff; border-radius: 16px; padding: 18px 20px; box-shadow: var(--shadow); }
+.stats b { display: block; font-size: 30px; line-height: 1.1; color: #2f6ae6; }
+.stats span { color: var(--gray); font-size: 14px; }
+@media (max-width: 700px) { .stats { grid-template-columns: repeat(2, 1fr); } .stats b { font-size: 24px; } }
+
+h2 { font-size: clamp(24px, 3vw, 32px); letter-spacing: -.01em; position: relative; padding-top: 14px; }
+h2::before { content: ""; position: absolute; top: 0; left: 0; width: 44px; height: 4px; border-radius: 4px; background: linear-gradient(90deg, #4f8df7, #a9c4ff); }
+.contacts h2::before { background: #4f8df7; }
+
+.card { border: 0; box-shadow: var(--shadow); transition: transform .15s, box-shadow .15s; }
+.card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(13,30,60,.12); }
+.ico { display: inline-flex; width: 48px; height: 48px; border-radius: 14px; background: #eaf1ff; align-items: center; justify-content: center; margin-bottom: 12px; }
+.ico svg { width: 26px; height: 26px; fill: none; stroke: #2f6ae6; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+.why li { background: #fff; box-shadow: var(--shadow); padding-left: 48px; position: relative; }
+.why li::before { content: ""; position: absolute; left: 18px; top: 19px; width: 18px; height: 18px; border-radius: 50%; background: #2f6ae6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12l4 4 8-8' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat; }
+
+.flowers { background: linear-gradient(135deg, #eef4ff, #f8f0ff); }
+.prices { background: #fff; border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; }
+.prices td { padding: 14px 20px; }
+.review { border: 0; box-shadow: var(--shadow); }
+.brands li { background: #fff; box-shadow: 0 2px 8px rgba(13,30,60,.06); }
+.gallery img, .team img { box-shadow: var(--shadow); }
+.contacts { background: linear-gradient(135deg, var(--navy), var(--navy-2)); }
+@media (max-width: 700px) { .hero { padding: 32px 0 56px; } .hero .lead { font-size: 16px; } .eyebrow { font-size: 13px; } }
+.hero .btn-main { background: #fff; color: #1f5ad6; }
