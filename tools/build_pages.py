@@ -10,6 +10,12 @@ import json
 ROOT = Path(__file__).resolve().parent.parent
 BASE = "https://xn--b1afk4ade.xn--365-5cd3blhj9c.xn--90ais/"
 
+SHOP = "https://xn--b1abglpdo.xn--365-5cd3blhj9c.xn--90ais/kategorii/kondicionery"
+SHOP_LINKS = [
+    (f"{SHOP}/kinghome/split-sistema-kinghome-prestige-inverter-kwh09acc-s6dba2a.html", "KingHome Prestige Inverter", "тихий инверторный кондиционер, наш выбор для квартиры"),
+    (f"{SHOP}/kinghome/split-sistema-kinghome-kinghome-cosmo-nordic-inverter-r32-wi-fi-kwh09awcxb-k6dna1b.html", "KingHome COSMO NORDIC", "для обогрева зимой, управление по Wi-Fi"),
+]
+
 PHONE = "+375296878717"
 PHONE_TXT = "+375 29 687-87-17"
 VIBER = "viber://chat?number=%2B375447688127"
@@ -180,6 +186,7 @@ PAGES = [
     },
     {
         "slug": "montazh-kondicionerov",
+        "shop": True,
         "videos": [("bYHBgKCmuSY", "Монтаж кондиционера"), ("KMqF0kp1l1Y", "Монтаж кондиционера, ещё один объект")],
         "title": "Установка и монтаж кондиционеров {in}",
         "desc": "Установка кондиционеров {in}: монтаж от 450 BYN, гарантия на монтаж 3 года. Бытовые и полупромышленные сплит-системы. Тел. +375 29 687-87-17.",
@@ -251,6 +258,18 @@ def page_html(city_key, city, p):
     <table class="prices">
 {rows}
     </table>
+  </section>"""
+    if p.get("shop"):
+        sl = "\n".join(f'      <li><a href="{u}">{escape(n)}</a>: {escape(d)}</li>' for u, n, d in SHOP_LINKS)
+        prices += f"""
+
+  <section class="wrap">
+    <h2>Ещё нет кондиционера?</h2>
+    <p>Кондиционеры мы продаём в нашем магазине на сайте могилев.климат365.бел. Купите у нас и сразу закажите монтаж: поможем подобрать модель под площадь помещения и установим её.</p>
+    <ul class="why">
+{sl}
+    </ul>
+    <p><a href="{SHOP}.html">Все кондиционеры в каталоге Климат 365</a></p>
   </section>"""
     brands = ""
     if p.get("brands", True):
