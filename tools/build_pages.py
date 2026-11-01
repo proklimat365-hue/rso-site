@@ -323,7 +323,7 @@ def page_html(city_key, city, p):
 {ld_html}
 <link rel="icon" href="../img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="../style.css?v=5">
+<link rel="stylesheet" href="../style.css?v=6">
 </head>
 <body>
 
@@ -420,6 +420,141 @@ def page_html(city_key, city, p):
 """
 
 
+
+def shell(title, desc, url, ld, crumbs, main_html, og_type="website"):
+    """Общая обёртка страницы (шапка, заявка, подвал) для статей и раздела «Полезное»."""
+    ld_html = "\n".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in ld)
+    return f"""<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{escape(title)} | Климат 365</title>
+<meta name="description" content="{escape(desc)}">
+<link rel="canonical" href="{url}">
+<meta property="og:type" content="{og_type}">
+<meta property="og:title" content="{escape(title)} | Климат 365">
+<meta property="og:description" content="{escape(desc)}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{BASE}img/team/team-2.jpg">
+<meta property="og:locale" content="ru_BY">
+{ld_html}
+<link rel="icon" href="../img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="../style.css?v=6">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a href="../" class="logo"><img src="../img/logo.png" alt="Климат 365" width="160" height="73"></a>
+    <nav class="menu" aria-label="Меню"><a href="../#uslugi">Услуги</a><a href="../#prices">Цены</a><a href="../#reviews">Отзывы</a><a href="./">Полезное</a><a href="../#contacts">Контакты</a></nav>
+    <div class="top-contact"><a class="phone" href="tel:{PHONE}">{PHONE_TXT}</a><span>ежедневно 9:00–20:00</span></div>
+  </div>
+</header>
+
+<main>
+  <section class="hero hero-article">
+    <div class="wrap">
+      <p class="crumbs">{crumbs}</p>
+      <h1>{escape(title)}</h1>
+    </div>
+  </section>
+
+{main_html}
+
+  <section class="contacts" id="contacts">
+    <div class="wrap">
+      <h2>Нужен мастер?</h2>
+      <p>Позвоните или напишите, расскажите, что случилось, и мы подскажем стоимость и время выезда. Работаем в Могилёве, Минске, Гомеле, Витебске, Орше и Полоцке.</p>
+      <p class="big"><a href="tel:{PHONE}">{PHONE_TXT}</a> <span>(A1)</span></p>
+      <p>Viber и Telegram: <a href="{VIBER}">+375 44 768-81-27</a></p>
+      <p>Офис: г. Могилёв, ул. Калужская, 15/1, офис 3<br>Работаем ежедневно с 9:00 до 20:00<br>Почта: <a href="mailto:klimat365.pro@yandex.ru">klimat365.pro@yandex.ru</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <p>ООО «Климат 365» · Обслуживание кондиционеров и холодильного оборудования в Беларуси</p>
+  <p>УНП 791308488 · г. Могилёв, ул. Калужская, 15/1, офис 3 · ежедневно 9:00–20:00</p>
+</footer>
+
+<nav class="callbar" aria-label="Связаться">
+  <a class="cb-call" href="tel:{PHONE}">Позвонить</a>
+  <a class="cb-viber" href="{VIBER}">Viber</a>
+  <a class="cb-tg" href="{TG}">Telegram</a>
+</nav>
+
+</body>
+</html>
+"""
+
+
+MONTHS = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
+
+
+def ru_date(d):
+    y, m, dd = d.split("-")
+    return f"{int(dd)} {MONTHS[int(m) - 1]} {y}"
+
+
+def article_html(a):
+    url = f"{BASE}poleznoe/{a['slug']}.html"
+    faq = "\n".join(f"""    <h3>{escape(q)}</h3>
+    <p>{escape(ans)}</p>""" for q, ans in a["faq"])
+    main_html = f"""  <article class="wrap article">
+    <p class="answer"><b>Короткий ответ:</b> {escape(a["lead"])}</p>
+{a["body"]}
+    <h2>Вопросы и ответы</h2>
+{faq}
+    <p class="byline">Статью проверил главный инженер «Климат 365» Андрей Эдуардович · {ru_date(a["date"])}</p>
+  </article>"""
+    ld = [
+        {"@context": "https://schema.org", "@type": "Article", "headline": a["title"], "description": a["desc"],
+         "datePublished": a["date"], "mainEntityOfPage": url, "image": f"{BASE}img/team/team-2.jpg",
+         "author": {"@type": "Person", "name": "Андрей Эдуардович", "jobTitle": "Главный инженер"},
+         "publisher": {"@type": "Organization", "name": "Климат 365", "logo": {"@type": "ImageObject", "url": f"{BASE}img/logo.png"}}},
+        {"@context": "https://schema.org", "@type": "FAQPage",
+         "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": ans}} for q, ans in a["faq"]]},
+        {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Главная", "item": BASE},
+            {"@type": "ListItem", "position": 2, "name": "Полезное", "item": f"{BASE}poleznoe/"},
+            {"@type": "ListItem", "position": 3, "name": a["title"], "item": url}]},
+    ]
+    crumbs = f'<a href="../">Главная</a> → <a href="./">Полезное</a> → {escape(a["title"])}'
+    return shell(a["title"], a["desc"], url, ld, crumbs, main_html, og_type="article")
+
+
+def articles_index_html(items):
+    url = f"{BASE}poleznoe/"
+    lis = "\n".join(f'      <li><a href="{a["slug"]}.html"><b>{escape(a["title"])}</b></a><br>{escape(a["desc"])}</li>' for a in items)
+    main_html = f"""  <section class="wrap">
+    <p>Советы инженеров «Климат 365» по кондиционерам и холодильному оборудованию для цветочных магазинов.</p>
+    <ul class="why">
+{lis}
+    </ul>
+  </section>"""
+    ld = [{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Главная", "item": BASE},
+        {"@type": "ListItem", "position": 2, "name": "Полезное", "item": url}]}]
+    return shell("Полезное о кондиционерах", "Статьи инженеров Климат 365: обслуживание и ремонт кондиционеров, обогрев зимой, холодильное оборудование для цветочных магазинов.",
+                 url, ld, '<a href="../">Главная</a> → Полезное', main_html)
+
+
+def build_articles(urls):
+    from articles import ARTICLES
+    items = sorted((a for a in ARTICLES if not a.get("draft")), key=lambda a: a["date"], reverse=True)
+    if not items:
+        return
+    out = ROOT / "poleznoe"
+    out.mkdir(exist_ok=True)
+    (out / "index.html").write_text(articles_index_html(items), encoding="utf-8")
+    urls.append(f"{BASE}poleznoe/")
+    for a in items:
+        (out / f'{a["slug"]}.html').write_text(article_html(a), encoding="utf-8")
+        urls.append(f'{BASE}poleznoe/{a["slug"]}.html')
+
+
 def main():
     urls = [BASE]
     for key, city in CITIES.items():
@@ -430,6 +565,7 @@ def main():
                 continue
             (out / f'{p["slug"]}.html').write_text(page_html(key, city, p), encoding="utf-8")
             urls.append(f'{BASE}{key}/{p["slug"]}.html')
+    build_articles(urls)
     sitemap = "\n".join(f"  <url><loc>{u}</loc></url>" for u in urls)
     (ROOT / "sitemap.xml").write_text(
         f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{sitemap}\n</urlset>\n',
