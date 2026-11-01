@@ -192,3 +192,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 .article table.prices { width: 100%; table-layout: fixed; }
 .article table.prices td { white-space: normal; overflow-wrap: anywhere; }
 .article table.prices td:last-child { width: 42%; }
+.art-fig { margin: 22px 0; }
+.art-fig img { width: 100%; max-width: 480px; height: auto; border-radius: 12px; display: block; }
+.art-fig figcaption { color: #5b6b80; font-size: .92rem; margin-top: 8px; }
