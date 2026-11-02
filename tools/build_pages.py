@@ -19,6 +19,17 @@ SHOP_LINKS = [
 SVC_BASIC = ("Обслуживание «Базовый»", "100 BYN", "150 BYN", "Очистка внутреннего блока, обработка внутреннего блока антисептическими средствами против плесени и грибка, чистка фильтров, проверка и обжим контактных групп.")
 SVC_FULL = ("Обслуживание «Полный»", "150 BYN", "200 BYN", "Очистка внутреннего блока, обработка внутреннего блока антисептическими средствами против плесени и грибка, очистка наружного блока, чистка фильтров, проверка дренажа, проверка и обжим контактных групп, проверка температурных режимов, дозаправка фреоном до 100 грамм, если требуется.")
 
+CLIPS = [
+    ("obsluzhivanie-1", "Снимаем фильтры"),
+    ("obsluzhivanie-2", "Открываем лицевую панель"),
+    ("obsluzhivanie-3", "Разбираем внутренний блок"),
+    ("obsluzhivanie-4", "Снимаем корпус: теперь видны теплообменник и вентилятор"),
+    ("obsluzhivanie-5", "Надеваем специальный чехол для мойки"),
+    ("obsluzhivanie-6", "Наносим очищающее средство на теплообменник"),
+    ("obsluzhivanie-7", "Смываем грязь: вода по шлангу стекает в ведро"),
+    ("obsluzhivanie-8", "Очищаем и промываем наружный блок"),
+]
+
 PHONE = "+375296878717"
 PHONE_TXT = "+375 29 687-87-17"
 VIBER = "viber://chat?number=%2B375447688127"
@@ -119,6 +130,7 @@ CITIES.update({
 PAGES = [
     {
         "slug": "obsluzhivanie-kondicionerov",
+        "clips": True,
         "videos": [("5D4iwPBhh-w", "Обслуживание кондиционера")],
         "title": "Обслуживание кондиционеров {in}",
         "desc": "Техническое обслуживание и чистка кондиционеров {in}: от 100 BYN. Выезд на следующий день, гарантия. Климат 365, тел. +375 29 687-87-17.",
@@ -293,6 +305,19 @@ def page_html(city_key, city, p):
     </ul>
     <p><a href="{SHOP}.html">Все кондиционеры в каталоге Климат 365</a></p>
   </section>"""
+    clips = ""
+    if p.get("clips"):
+        cl = "\n".join(f'''      <figure><video src="../video/{c}.mp4" poster="../img/service/{c}.jpg" muted loop playsinline controls preload="none" width="480" height="854"></video><figcaption>{i}. {escape(t)}</figcaption></figure>''' for i, (c, t) in enumerate(CLIPS, 1))
+        clips = f"""  <section class="wrap">
+    <h2>Как проходит обслуживание: видео с наших выездов</h2>
+    <p>Полное обслуживание кондиционера от начала до конца, ускорено в 1,6 раза:</p>
+    <video class="film" src="../video/obsluzhivanie-film.mp4" poster="../img/service/obsluzhivanie-film.jpg" controls playsinline preload="none" width="854" height="480"></video>
+    <p>Главные этапы по отдельности:</p>
+    <div class="clips">
+{cl}
+    </div>
+    <figure class="art-fig"><img src="../img/service/electrolux-posle-chistki.jpg" alt="Чистый кондиционер Electrolux Portofino после обслуживания" width="1280" height="577" loading="lazy"><figcaption>Результат: кондиционер Electrolux после обслуживания.</figcaption></figure>
+  </section>"""
     brands = ""
     if p.get("brands", True):
         bl = "\n".join(f"      <li>{escape(b)}</li>" for b in BRANDS)
@@ -345,7 +370,7 @@ def page_html(city_key, city, p):
 {ld_html}
 <link rel="icon" href="../img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="../style.css?v=8">
+<link rel="stylesheet" href="../style.css?v=10">
 </head>
 <body>
 
@@ -379,6 +404,8 @@ def page_html(city_key, city, p):
   </section>
 
 {sections}
+
+{clips}
 
   <section class="wrap">
     <h2>Свой отдел сервиса</h2>
@@ -463,7 +490,7 @@ def shell(title, desc, url, ld, crumbs, main_html, og_type="website"):
 {ld_html}
 <link rel="icon" href="../img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="../style.css?v=8">
+<link rel="stylesheet" href="../style.css?v=10">
 </head>
 <body>
 
