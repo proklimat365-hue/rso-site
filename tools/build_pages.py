@@ -310,7 +310,7 @@ def page_html(city_key, city, p):
         cl = "\n".join(f'''      <figure><video src="../video/{c}.mp4" poster="../img/service/{c}.jpg" muted loop playsinline controls preload="none" width="480" height="854"></video><figcaption>{i}. {escape(t)}</figcaption></figure>''' for i, (c, t) in enumerate(CLIPS, 1))
         clips = f"""  <section class="wrap">
     <h2>Как проходит обслуживание: видео с наших выездов</h2>
-    <p>Полное обслуживание кондиционера от начала до конца, ускорено в 1,6 раза:</p>
+    <p>Полное обслуживание кондиционера от начала до конца. Работает наш инженер Игорь, видео ускорено в 1,6 раза:</p>
     <video class="film" src="../video/obsluzhivanie-film.mp4" poster="../img/service/obsluzhivanie-film.jpg" controls playsinline preload="none" width="854" height="480"></video>
     <p>Главные этапы по отдельности:</p>
     <div class="clips">
