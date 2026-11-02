@@ -195,3 +195,15 @@ html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 .art-fig { margin: 22px 0; }
 .art-fig img { width: 100%; max-width: 480px; height: auto; border-radius: 12px; display: block; }
 .art-fig figcaption { color: #5b6b80; font-size: .92rem; margin-top: 8px; }
+
+/* Раскрывающиеся пояснения в ценах */
+.prices details summary { cursor: pointer; color: var(--navy-2); font-weight: 600; list-style: none; }
+.prices details summary::-webkit-details-marker { display: none; }
+.prices details summary::after { content: " ▾"; font-size: .85em; }
+.prices details[open] summary::after { content: " ▴"; }
+.prices details p { margin: 8px 0 2px; font-weight: 400; color: #3d4a5c; font-size: .93rem; line-height: 1.45; }
+.prices .org { color: #5b6b80; font-size: .85rem; font-weight: 400; }
+#prices table.prices, .prices { max-width: 100%; }
+.prices details p { hyphens: auto; }
+.prices td:last-child { width: 34%; }
+.prices .org { display: block; white-space: normal; line-height: 1.3; margin-top: 2px; }
