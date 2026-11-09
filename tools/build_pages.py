@@ -246,6 +246,7 @@ PAGES = [
             ]),
         ],
         "prices": [],
+        "before_after": True,
         "faq": [
             ("Можно ли заключить договор на обслуживание?", "Да, работаем с организациями: договор, документы и регулярные выезды по графику."),
         ],
@@ -263,6 +264,13 @@ def price_row(name, price, org_price=None, details=None):
     if org_price:
         pc += f'<br><span class="org">для организаций {escape(org_price)}</span>'
     return f"      <tr><td>{cell}</td><td>{pc}</td></tr>"
+
+
+FLOWER_PHOTOS = [
+    ("kondensator-do-chistki.jpg", "Радиатор холодильного агрегата забит пылью", "До: радиатор забит пылью."),
+    ("kondensator-posle-chistki.jpg", "Чистый радиатор холодильного агрегата после обслуживания", "После: радиатор чистый, воздух проходит свободно."),
+    ("holodilnik-dlya-cvetov.jpg", "Холодильная камера для цветов с агрегатом на крыше", "Камера для цветов: агрегат стоит сверху."),
+]
 
 
 def page_html(city_key, city, p):
@@ -318,6 +326,15 @@ def page_html(city_key, city, p):
     </div>
     <figure class="art-fig"><img src="../img/service/electrolux-posle-chistki.jpg" alt="Чистый кондиционер Electrolux Portofino после обслуживания" width="1280" height="577" loading="lazy"><figcaption>Результат: кондиционер Electrolux после обслуживания.</figcaption></figure>
   </section>"""
+    if p.get("before_after"):
+        figs = "\n".join(f'''      <figure><img src="../img/flowers/{f}" alt="{escape(a)}" width="577" height="1280" loading="lazy"><figcaption>{escape(c)}</figcaption></figure>''' for f, a, c in FLOWER_PHOTOS)
+        clips += f"""  <section class="wrap">
+    <h2>Чистка холодильника для цветов: до и после</h2>
+    <p>Холодильный агрегат стоит на крыше камеры и забирает воздух из зала. За сезон его радиатор (конденсатор) зарастает пылью, как войлоком. Агрегат перегревается, хуже держит температуру и чаще ломается, а это риск потерять товар в праздники. Фото с нашего выезда в цветочный магазин:</p>
+    <div class="clips">
+{figs}
+    </div>
+  </section>"""
     brands = ""
     if p.get("brands", True):
         bl = "\n".join(f"      <li>{escape(b)}</li>" for b in BRANDS)
@@ -370,7 +387,7 @@ def page_html(city_key, city, p):
 {ld_html}
 <link rel="icon" href="../img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="../style.css?v=11">
+<link rel="stylesheet" href="../style.css?v=12">
 </head>
 <body>
 
@@ -490,7 +507,7 @@ def shell(title, desc, url, ld, crumbs, main_html, og_type="website"):
 {ld_html}
 <link rel="icon" href="../img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="../style.css?v=11">
+<link rel="stylesheet" href="../style.css?v=12">
 </head>
 <body>
 
